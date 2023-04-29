@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Fragment } from "react";
+import GlobalStyle from "./style/global";
+import RoutesApp from "./routes";
 
 const App = () => {
   return (
-    <div>
-      <h1>Time</h1>
-    </div>
+    <>
+      <RoutesApp />
+      <GlobalStyle />
+    </>
   );
 };
 
