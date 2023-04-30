@@ -3,10 +3,8 @@ import Container from "./styles";
 import Input from "../../component/Input";
 import Button from "../../component/Button";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 
 const Signin = () => {
-  const { signin } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -19,36 +17,29 @@ const Signin = () => {
       return;
     }
 
-    const res = signin(email, password);
-
-    if (res) {
-      setError(res);
-    }
-
     navigate("/home");
   };
 
   return (
     <Container>
-      <h1>Login</h1>
       <div>
-        <Input
-          type={"email"}
-          placeholder={"Digite seu E-mail"}
-          value={email}
-          onChange={(e) => [setEmail(e.target.value), setError("")]}
-        />
-        <Input
-          type={"password"}
-          placeholder={"Digite seu Password"}
-          value={password}
-          onChange={(e) => [setPassword(e.target.value), setError("")]}
-        />
-        <div>{error}</div>
-        <Button text={"Entrar"} onClick={handleLogin} />
-        <div>
-          Não tem uma conta?
+        <div className="content">
+          <Input
+            type={"email"}
+            placeholder={"Digite seu E-mail"}
+            value={email}
+            onChange={(e) => [setEmail(e.target.value), setError("")]}
+          />
+          <Input
+            type={"password"}
+            placeholder={"Digite seu Password"}
+            value={password}
+            onChange={(e) => [setPassword(e.target.value), setError("")]}
+          />
+          <div>{error}</div>
+          <Button text={"Login"} onClick={handleLogin} />
           <div>
+            Não tem uma conta?
             <Link to="/signup">&nbsp;Registre-se</Link>
           </div>
         </div>
