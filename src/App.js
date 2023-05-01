@@ -1,11 +1,11 @@
 import React from "react";
 import GlobalStyle from "./style/global";
-import RoutesApp from "./routes";
 import Container from "./style/theme";
+import RoutesApp from "./routes";
 
 const App = () => {
   return (
-    <Container className="dark">
+    <Container>
       <RoutesApp />
       <GlobalStyle />
     </Container>

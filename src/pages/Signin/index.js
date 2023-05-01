@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Container from "./styles";
-import Input from "../../component/Input";
-import Button from "../../component/Button";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { getUser } from "../../service/firebase";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -11,13 +12,17 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    const userId = await getUser(email, password);
+
     if (!email | !password) {
       setError("Preencha todos os campos");
       return;
     }
 
-    navigate("/home");
+    if (userId !== "") {
+      navigate(`/${userId}`);
+    }
   };
 
   return (

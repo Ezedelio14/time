@@ -4,6 +4,7 @@ const SInput = styled.input`
   border: 1px solid gray;
   border-radius: 5px;
   padding: 20px 5px;
+  font-size: 15px;
 
   &:focus {
     outline: none;

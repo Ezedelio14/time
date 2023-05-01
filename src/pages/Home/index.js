@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
-    return (
-        <div>
-            Home
-        </div>
-    );
+  let { userId } = useParams();
+  return <div>{userId}</div>;
 };
 
 export default Home;
