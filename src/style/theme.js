@@ -11,7 +11,7 @@ const Container = styled.div`
   }
 
   &.light {
-    background: var(--white);
+    background: var(--paleBlue);
   }
 `;
 

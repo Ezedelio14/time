@@ -11,7 +11,7 @@ const Container = styled.div`
 
   & .content {
     color: black;
-    height: 22rem;
+    height: 17rem;
     width: 25rem;
     padding: 15px;
     display: flex;

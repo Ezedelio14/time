@@ -5,7 +5,7 @@ import RoutesApp from "./routes";
 
 const App = () => {
   return (
-    <Container>
+    <Container className="light">
       <RoutesApp />
       <GlobalStyle />
     </Container>
