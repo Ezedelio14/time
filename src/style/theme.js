@@ -7,7 +7,7 @@ const Container = styled.div`
   }
 
   &.dark {
-    background: var(--darkBlue);
+    background: var(--darkblue);
   }
 
   &.light {

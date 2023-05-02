@@ -10,9 +10,10 @@ const RoutesApp = () => {
     <BrowserRouter>
       <Fragment>
         <Routes>
-          <Route exact path="/" element={<PrivateRoute Child={Home} />} />
+          <Route exact path="/:uid" element={<PrivateRoute Child={Home} />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="*" element={<Login />} />
         </Routes>
       </Fragment>
     </BrowserRouter>

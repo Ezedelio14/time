@@ -4,11 +4,13 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import app from "../../service/firebase";
+import app, { userCollection } from "../../service/firebase";
+import { addDoc } from "firebase/firestore";
 
 const SignUp = () => {
   const navigate = useNavigate();
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,11 +19,14 @@ const SignUp = () => {
 
     const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
-        navigate("/");
+        await addDoc(userCollection, { name, id: user.uid }).then((user) => {
+          console.log(user);
+          navigate(`/${user.id}`);
+        });
+
         // ...
       })
       .catch((error) => {
@@ -35,6 +40,12 @@ const SignUp = () => {
     <Container>
       <div>
         <div className="content">
+          <Input
+            type={"text"}
+            placeholder={"Enter your Name"}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <Input
             type={"email"}
             placeholder={"Enter your E-mail"}

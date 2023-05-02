@@ -1,4 +1,5 @@
 import * as firebase from "firebase/app";
+import { collection, getFirestore } from "firebase/firestore";
 
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -10,5 +11,8 @@ const app = firebase.initializeApp({
   appId: process.env.REACT_APP_FIREBASE_API_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUTEMENT_ID,
 });
+
+const db = getFirestore(app);
+export const userCollection = collection(db, "users");
 
 export default app;

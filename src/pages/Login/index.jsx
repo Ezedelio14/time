@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import app from "../../service/firebase";
+import app, { userCollection } from "../../service/firebase";
+import { getDocs } from "firebase/firestore";
 
 const Login = () => {
   const navigate = useNavigate();
 
+  const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(userCollection);
+      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log(users);
+    };
+
+    getUsers();
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,8 +30,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        navigate("/");
+        navigate(`/${user.uid}`);
       })
       .catch((error) => {
         const errorCode = error.code;
