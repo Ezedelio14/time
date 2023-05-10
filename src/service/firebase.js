@@ -12,7 +12,7 @@ const app = firebase.initializeApp({
   measurementId: process.env.REACT_APP_FIREBASE_MEASUTEMENT_ID,
 });
 
-const db = getFirestore(app);
+export const db = getFirestore(app);
 export const userCollection = collection(db, "users");
 
 export default app;

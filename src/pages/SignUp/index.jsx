@@ -4,8 +4,9 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import app, { userCollection } from "../../service/firebase";
-import { addDoc } from "firebase/firestore";
+import app, { db, userCollection } from "../../service/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { getAnalytics, setUserId } from "firebase/analytics";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -20,20 +21,18 @@ const SignUp = () => {
     const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        await addDoc(userCollection, { name, id: user.uid }).then((user) => {
-          console.log(user);
-          navigate(`/${user.id}`);
-        });
-
-        // ...
+        await setDoc(doc(db, "users", `${user.uid}`), { name });
+        navigate(`/${user.uid}`);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
+
+    const analytics = getAnalytics(app);
+    setUserId(analytics, "123456");
   };
 
   return (
