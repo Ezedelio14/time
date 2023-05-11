@@ -13,7 +13,9 @@ const Landing = () => {
           <Link to="/">About Us</Link>
           <Link to="/">Contact</Link>
         </nav>
-        <div>Login/SignUp</div>
+        <div>
+          <Link to="login">Login</Link>/<Link to="signup">SignUp</Link>
+        </div>
       </div>
       <div className="container">
         <div>

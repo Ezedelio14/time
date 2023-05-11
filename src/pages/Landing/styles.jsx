@@ -11,6 +11,10 @@ const Container = styled.div`
     font-family: "Nunito", sans-serif;
   }
 
+  .navbar {
+    font-weight: bolder;
+  }
+
   .navbar,
   .container {
     display: flex;
@@ -30,11 +34,12 @@ const Container = styled.div`
 
   a {
     margin: 0 7px;
+    transition: 0.2s;
     text-decoration: none;
   }
 
   a:hover {
-    border-bottom: 5px solid;
+    border-bottom: 3px solid;
   }
 
   .active {
