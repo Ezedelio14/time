@@ -4,12 +4,14 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "../hooks/PrivateRoute";
+import Landing from "../pages/Landing/index";
 
 const RoutesApp = () => {
   return (
     <BrowserRouter>
       <Fragment>
         <Routes>
+          <Route exact path="/" element={<Landing />} />
           <Route exact path="/:uid" element={<PrivateRoute Child={Home} />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<SignUp />} />
