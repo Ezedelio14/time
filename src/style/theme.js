@@ -7,11 +7,9 @@ const Container = styled.div`
   }
 
   &.dark * {
-    color: white;
   }
 
   &.light * {
-    color: black;
   }
 
   &.dark {

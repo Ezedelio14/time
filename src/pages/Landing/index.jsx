@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import content from "../../content/content.json";
 
 const Landing = () => {
+  
   return (
     <Container>
       <div className="navbar">
@@ -29,6 +30,8 @@ const Landing = () => {
           <img src="./assets/images/1.png" alt="" className="landin-img" />
         </div>
       </div>
+
+      <button>Send email</button>
     </Container>
   );
 };

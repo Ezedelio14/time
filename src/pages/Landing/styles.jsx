@@ -49,6 +49,11 @@ const Container = styled.div`
   p {
     margin-top: 5rem;
   }
+
+  button {
+    padding: 20px;
+    color: black; 
+  }
 `;
 
 export default Container;
