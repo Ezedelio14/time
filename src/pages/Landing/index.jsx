@@ -33,7 +33,7 @@ const Landing = () => {
     };
 
     // Make the POST request using the Fetch API
-    await fetch(url, options)
+    await fetch(url)
       .then((response) => response.json()) // Parse the response as JSON
       .then((result) => {
         console.log("Success:", result);
