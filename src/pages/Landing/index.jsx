@@ -6,57 +6,41 @@ import content from "../../content/content.json";
 
 const Landing = () => {
   const pagamento = async () => {
-    const reqs = await fetch("https://sandbox.api.pagseguro.com/orders", {
-      method: "POST",
+    // URL to which you want to make the POST request
+    const url = "https://api.manjar.app.br/api/v1/users";
+
+    // Data to be sent in the request body (in this case, a JSON object)
+    const data = {
+      tipo: "Vegano",
+      nome: "Ezedélio Garcia",
+      email: "ezedelio.garcia@example.com",
+      telefone: "555-222-7890",
+      password: "senha_segura123",
+      cpf: "12346578901",
+      idPlano: 2,
+      acesso: "Cliente",
+      img: "caminho/para/imagem.png",
+    };
+
+    // Options for the fetch request
+    const options = {
+      method: "POST", // HTTP method
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "SEU_TOKEN",
+        "Content-Type": "application/json", // Specify the content type of the request body
+        // You can add more headers here if needed
       },
-      body: JSON.stringify({
-        reference_id: "ex-00001",
-        customer: {
-          name: "Jose da Silva",
-          email: "email@test.com",
-          tax_id: "12345678909",
-          phones: [
-            {
-              country: "55",
-              area: "11",
-              number: "999999999",
-              type: "MOBILE",
-            },
-          ],
-        },
-        items: [
-          {
-            name: "nome do item",
-            quantity: 1,
-            unit_amount: 500,
-          },
-        ],
-        qr_codes: [
-          {
-            amount: {
-              value: 500,
-            },
-            expiration_date: "2021-08-29T20:15:59-03:00",
-          },
-        ],
-        shipping: {
-          address: {
-            street: "Avenida Brigadeiro Faria Lima",
-            number: "1384",
-            complement: "apto 12",
-            locality: "Pinheiros",
-            city: "São Paulo",
-            region_code: "SP",
-            country: "BRA",
-            postal_code: "01452002",
-          },
-        },
-        notification_urls: ["https://meusite.com/notificacoes"],
-      }),
-    });
+      body: JSON.stringify(data), // Convert the data object to a JSON string
+    };
+
+    // Make the POST request using the Fetch API
+    await fetch(url, options)
+      .then((response) => response.json()) // Parse the response as JSON
+      .then((result) => {
+        console.log("Success:", result);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   useEffect(() => {
@@ -101,7 +85,7 @@ const Landing = () => {
         </div>
       </div>
 
-      <button>Send email</button>
+      <button onClick={pagamento}>Send email</button>
     </Container>
   );
 };
